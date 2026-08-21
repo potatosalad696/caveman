@@ -8,8 +8,8 @@ The sections below are the learning guides for Caveman.
 ## Chapter 1 - Printing
 The syntax for printing in Caveman is shown below:
 ```
-shout normal [val]
-shout special [val]
+shout normal [value]
+shout special [value]
 ```
 
 For example, to print ```Hello World``` in Caveman, write this line below:
@@ -51,7 +51,22 @@ number animals 100
 ```
 
 #### yesno
-```yesno``` is used to store ```yes``` or ```no```, and thus is equivalent to the `bool` datatype. Instead of using ```true``` or ```false```, Caveman uses ```yes``` and ```no```. An example is *probably* snown below:
+```yesno``` is used to store ```yes``` or ```no```, and thus is equivalent to the `bool` datatype. Instead of using ```true``` or ```false```, Caveman uses ```yes``` and ```no```. An example is *probably* shown below:
 ```
 yesno have_meat yes
+```
+
+### ```shout special```
+```shout special``` is used to combine text and variables. It is similar to an f-string in Python. To use it, variables have to be enclosed in ```([])```. An example is shown below:
+```
+words want_eat "meat"
+
+shout normal want_eat
+shout special "me want eat ([want_eat])"
+```
+
+Output:
+```
+meat
+me want eat meat
 ```

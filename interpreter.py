@@ -1,4 +1,4 @@
-def update_var(datatype, name, val):
+def update_var(datatype, name, val: str):
     value = val
 
     match datatype:
@@ -15,6 +15,9 @@ def update_var(datatype, name, val):
 
 def remove_quotes(text: str):
     return text.replace('"', "")
+
+def is_valid_string(text: str):
+    return (text[0] == '"') and (text[-1] == '"')
 
 variables = {}
 
@@ -37,10 +40,25 @@ for line in code:
 
             match mode:
                 case "normal":
-                    print(to_print.replace('"', ""))
+                    if is_valid_string(to_print):
+                        print(to_print.replace('"', ""))
+                    else:
+                        if variables[to_print] == True:
+                            print("yes")
+                        elif variables[to_print] == False:
+                            print("no")
+                        else:
+                            print(variables[to_print])
                 case "special":
-                    ...
+                    if is_valid_string(to_print):
+                        to_print = to_print.replace('"', "").replace("([", "{").replace("])", "}")
+                        print(to_print.format_map(variables))
+                    else:
+                        if variables[to_print] == True:
+                            print("yes")
+                        elif variables[to_print] == False:
+                            print("no")
+                        else:
+                            print(variables[to_print])
         case "words" | "number" | "yesno":
             update_var(tokens[0], first, second)
-
-print(variables)
