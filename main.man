@@ -1,5 +1,0 @@
-words name "Mia"
-words hobby "drawing"
-
-shout special "Hi, I am ([name])"
-shout special "I like ([hobby])"

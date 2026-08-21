@@ -21,6 +21,8 @@ def remove_quotes(text: str):
 def is_valid_string(text: str):
     return (text[0] == '"') and (text[-1] == '"')
 
+### stuff ###
+
 os.system("clear")
 
 variables = {}
@@ -34,11 +36,11 @@ for line in code:
 
     tokens = line.split(" ", 1)
 
-    first = tokens[1].split(" ", 1)[0]
-    second = tokens[1].split(" ", 1)[1]
-
     match tokens[0]:
         case "shout":
+            first = tokens[1].split(" ", 1)[0]
+            second = tokens[1].split(" ", 1)[1]
+
             mode = first
             to_print = second
 
@@ -56,7 +58,7 @@ for line in code:
                 case "special":
                     if is_valid_string(to_print):
                         to_print = to_print.replace('"', "").replace("([", "{").replace("])", "}")
-                        print(to_print.format_map(variables))
+                        print(to_print.format_map(variables)) # yesno breaks
                     else:
                         if variables[to_print] == True:
                             print("yes")
@@ -65,4 +67,14 @@ for line in code:
                         else:
                             print(variables[to_print])
         case "words" | "number" | "yesno":
+            first = tokens[1].split(" ", 1)[0]
+            second = tokens[1].split(" ", 1)[1]
+
             update_var(tokens[0], first, second)
+        case "what":
+            first = tokens[1].split(" ", 2)[0]
+            second = tokens[1].split(" ", 2)[1]
+            third = tokens[1].split(" ", 2)[2]
+
+            temp = input(third.replace('"', ""))
+            update_var(first, second, temp)

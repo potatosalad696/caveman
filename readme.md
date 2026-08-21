@@ -57,7 +57,7 @@ yesno have_meat yes
 ```
 
 ### ```shout special```
-```shout special``` is used to combine text and variables. It is similar to an f-string in Python. To use it, variables have to be enclosed in ```([])```. An example is shown below:
+```shout special``` is used to combine text and variables. It is similar to an f-string in Python. To use it, variables have to be enclosed in ```([])``` (called a double blanket). An example is shown below:
 ```
 words want_eat "meat"
 
@@ -69,4 +69,24 @@ Output:
 ```
 meat
 me want eat meat
+```
+
+```shout special``` does not support operations within a double blanket.
+
+### Input
+To get input from the user, use this syntax:
+```
+what [type] [name] [value]
+```
+
+```what``` will immediately assign the input to a variable with the same name and the same datatype. An example is shown below:
+```
+what number age "Age? "
+shout special "You ([age])"
+```
+
+Output:
+```
+Age? 25
+You 25
 ```
