@@ -1,3 +1,5 @@
+import os
+
 def update_var(datatype, name, val: str):
     value = val
 
@@ -18,6 +20,8 @@ def remove_quotes(text: str):
 
 def is_valid_string(text: str):
     return (text[0] == '"') and (text[-1] == '"')
+
+os.system("clear")
 
 variables = {}
 

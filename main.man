@@ -1,9 +1,5 @@
-words want_eat "meat"
-number animals 100
-yesno have_meat yes
+words name "Mia"
+words hobby "drawing"
 
-shout normal "want eat meat!"
-shout normal want_eat
-shout special "does he want to eat? ([want_eat])"
-shout special animals
-shout special have_meat
+shout special "Hi, I am ([name])"
+shout special "I like ([hobby])"
