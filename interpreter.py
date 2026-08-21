@@ -31,7 +31,7 @@ with open("main.man", "r") as f:
     code = f.read().split("\n")
 
 for line in code:
-    if line == "":
+    if (line == "") or (line.startswith(">> ")):
         continue
 
     tokens = line.split(" ", 1)
