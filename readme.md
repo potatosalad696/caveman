@@ -6,7 +6,7 @@ Caveman is a programming language that ***tries*** to use as few symbols as poss
 The sections below are the learning guides for Caveman.
 
 ## Chapter 1 - Printing
-The syntax is printing in Caveman is shown below:
+The syntax for printing in Caveman is shown below:
 
 ```
 say [___]
@@ -16,8 +16,10 @@ For example, to print ```Hello World``` in Caveman, write this line below (outpu
 
 ```
 say "Hello World"
+```
 
-================= Output
+Output:
 
+```
 Hello World
 ```
