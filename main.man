@@ -1,6 +1,2 @@
-words want_eat "meat" !
-number animals 100 !
-number mates 1.5 !
-yesno have_meat yes !
-
-scream "Hello World" !!!
+what number age "Age? " ?
+shout "You ([age])" !!

@@ -57,13 +57,13 @@ number days 1.5 !
 yesno have_meat yes !
 ```
 
-### `shout special`
-`shout special` is used to combine text and variables. It is similar to an f-string in Python. To use it, variables have to be enclosed in `([])` (called a double blanket). An example is shown below:
+### `shout`
+`shout` is used to print variables, whether they are by themselves or combined with text. To combine variables with text, variables have to be enclosed in `([])` (called a double blanket). An example is shown below:
 ```
-words want_eat "meat"
+words want_eat "meat" !
 
-shout normal want_eat
-shout special "me want eat ([want_eat])"
+shout want_eat !!
+shout "me want eat ([want_eat])" !!
 ```
 
 Output:
@@ -72,18 +72,18 @@ meat
 me want eat meat
 ```
 
-`shout special` does not support operations within a double blanket.
+`shout` does not support operations within a double blanket.
 
 ### Input
-To get input from the user, use this syntax:
+`what` is used for input. To get input from the user, use this syntax:
 ```
-what [type] [name] [value]
+what [type] [name] [value] ?
 ```
 
 `what` will immediately assign the input to a variable with the same name and the same datatype. An example is shown below:
 ```
-what number age "Age? "
-shout special "You ([age])"
+what number age "Age? " ?
+shout "You ([age])" !!
 ```
 
 Output:

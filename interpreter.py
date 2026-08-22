@@ -37,13 +37,17 @@ def is_valid_string(val: str):
 def remove_quotes(val: str):
     return val.removeprefix('"').removesuffix('"')
 
+def double_blanket(val: str):
+    return val.replace("([", "{").replace("])", "}")
+
 def has_right_ending(com: str, val: str):
     endings = {
         "scream": " !!!",
         "shout": " !!",
         "words": " !",
         "number": " !",
-        "yesno": " !"
+        "yesno": " !",
+        "what": " ?"
     }
 
     if val.endswith(endings[com]):
@@ -80,18 +84,20 @@ for line in code:
             values = remove_quotes(values)
             print(values)
         case "shout":
-            pass
+            if is_valid_string(values):
+                values = remove_quotes(double_blanket(values)).format_map(variables)
+                print(values)
+            else:
+                print(variables[values])
         case "words" | "number" | "yesno":
             name = values.split(" ", 1)[0]
             value = values.split(" ", 1)[1]
 
             update_var(command, name, value)
         case "what":
-            first = values.split(" ", 2)[0]
-            second = values.split(" ", 2)[1]
-            third = values.split(" ", 2)[2]
+            datatype = values.split(" ", 2)[0]
+            name = values.split(" ", 2)[1]
+            to_ask = values.split(" ", 2)[2]
 
-            temp = input(third.replace('"', ""))
-            update_var(first, second, temp)
-
-print(variables)
+            value = input(to_ask.replace('"', ""))
+            update_var(datatype, name, value)
