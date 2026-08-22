@@ -1,4 +1,6 @@
 # Caveman
+***AI is not used in this project.***
+
 Caveman is a programming language that ***tries*** to sound as close to a stereotypical caveman as possible. Therefore, it uses **a lot of** unconventional names, and it is simpler than other programming languages.
 
 **This programming language should not be used for anything serious.**
@@ -92,7 +94,7 @@ Age? 25
 You 25
 ```
 
-## Chapter 3 - Operations by Operators
+## Chapter 3 - If It's Better, Take It and Give It to Me
 `give` and `take` are used to do additions and subtractions respectively in Caveman. The syntax is shown below:
 ```
 give [first] [second] [result] !!
@@ -115,7 +117,7 @@ Output:
 21
 ```
 
-## Appendix A - Endings
+## Appendix A - Exclamation Questions
 There are different types of endings in Caveman.
 - `!`
     - This is the default ending in Caveman. When in doubt, use this.
