@@ -58,12 +58,12 @@ yesno have_meat yes !
 ```
 
 ### `shout`
-`shout` is used to print variables, whether they are by themselves or combined with text. To combine variables with text, variables have to be enclosed in `([])` (called a double blanket). An example is shown below:
+`shout` is used to print variables, whether they are by themselves or combined with text. To combine variables with text, variables have to be enclosed in `[[]]` (called a double blanket). An example is shown below:
 ```
 words want_eat "meat" !
 
 shout want_eat !!
-shout "me want eat ([want_eat])" !!
+shout "me want eat [[want_eat]]" !!
 ```
 
 Output:
@@ -83,7 +83,7 @@ what [type] [name] [text] ?
 `what` will immediately assign the input to a variable with the same name and the same datatype. An example is shown below:
 ```
 what number age "Age? " ?
-shout "You ([age])" !!
+shout "You [[age]]" !!
 ```
 
 Output:

@@ -38,7 +38,7 @@ def remove_quotes(val: str):
     return val.removeprefix('"').removesuffix('"')
 
 def double_blanket(val: str):
-    return val.replace("([", "{").replace("])", "}")
+    return val.replace("[[", "{").replace("]]", "}")
 
 def has_right_ending(com: str, val: str):
     endings = {
