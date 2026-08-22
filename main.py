@@ -48,8 +48,8 @@ def has_right_ending(com: str, val: str):
         "fingers": " !",
         "yesno": " !",
         "what": " ?",
-        "give": " !",
-        "take": " !"
+        "give": " !!",
+        "take": " !!"
     }
 
     if val.endswith(endings[com]):

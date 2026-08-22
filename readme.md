@@ -95,8 +95,8 @@ You 25
 ## Chapter 3 - Operations by Operators
 `give` and `take` are used to do additions and subtractions respectively in Caveman. The syntax is shown below:
 ```
-give [first] [second] [result] !
-take [first] [second] [result] !
+give [first] [second] [result] !!
+take [first] [second] [result] !!
 ```
 
 `first` and `second` can be variables or numbers, meanwhile result is always a variable. An example is shown below.
@@ -105,7 +105,7 @@ fingers old_meat 7 !
 fingers new_meat 14 !
 
 shout old_meat !!
-give old_meat new_meat old_meat !
+give old_meat new_meat old_meat !!
 shout old_meat !!
 ```
 
@@ -120,7 +120,7 @@ There are different types of endings in Caveman.
 - `!`
     - This is the default ending in Caveman. When in doubt, use this.
 - `!!`
-    - This is used for `shout`. Think of it as an emphasizer.
+    - This is used for `shout`, `give`, and `take`. Think of it as an emphasizer.
 - `!!!`
     - This is used for `scream`. It's basically an emphasize-emphasizer.
 - `?`
