@@ -8,8 +8,8 @@ The sections below are the learning guides for Caveman.
 ## Chapter 1 - Printing
 There are two functions that can be used to print in Caveman. ```scream``` is used purely for text. If you want to print variables in any way, you have to use ```shout``` (to learn more, read Chapter 2).
 ```
-scream [value] !!!
-shout [value] !!
+scream [text] !!!
+shout [text] !!
 ```
 
 For example, to print `Hello World` in Caveman, write this line below:
@@ -77,7 +77,7 @@ me want eat meat
 ### Input
 `what` is used for input. To get input from the user, use this syntax:
 ```
-what [type] [name] [value] ?
+what [type] [name] [text] ?
 ```
 
 `what` will immediately assign the input to a variable with the same name and the same datatype. An example is shown below:
