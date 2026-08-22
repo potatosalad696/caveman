@@ -138,7 +138,7 @@ more age 21 is_more_21 ?
 shout is_more_21 !!
 ```
 
-Output _(note: this is a bug and should output `yes`. We're still working on it.)_:
+Output _(note: this is a bug and should output `no`. We're still working on it.)_:
 ```
 False
 ```
