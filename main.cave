@@ -1,6 +1,8 @@
-fingers old_meat 7 !
-fingers new_meat 14 !
+what fingers num1 "First number: " ?
+what fingers num2 "Second number: " ?
 
-shout old_meat !!
-give old_meat new_meat old_meat !
-shout old_meat !!
+give num1 num2 sum !
+take num1 num2 diff !
+
+shout "Sum: [[sum]]" !!
+shout "Difference: [[diff]]" !!
