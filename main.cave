@@ -1,8 +1,3 @@
-what fingers num1 "First number: " ?
-what fingers num2 "Second number: " ?
-
-give num1 num2 sum !!
-take num1 num2 diff !!
-
-shout "Sum: [[sum]]" !!
-shout "Difference: [[diff]]" !!
+fingers age 20 !
+more age 21 is_more_21 ?
+shout is_more_21 !!

@@ -94,7 +94,10 @@ Age? 25
 You 25
 ```
 
-## Chapter 3 - If It's Better, Take It and Give It to Me
+## Chapter 3 - Take the Bigger One
+The way Caveman does math is *very* weird (but that's what makes it special).
+
+### Operations
 `give` and `take` are used to do additions and subtractions respectively in Caveman. The syntax is shown below:
 ```
 give [first] [second] [result] !!
@@ -117,6 +120,32 @@ Output:
 21
 ```
 
+### Comparisons
+There are 6 types of comparisons, listed below:
+```
+less [first] [second] [result] ?
+more [first] [second] [result] ?
+same [first] [second] [result] ?
+nosame [first] [second] [result] ?
+and [first] [second] [result] ?
+or [first] [second] [result] ?
+```
+
+They are equivalent to `<`, `>`, `==`, `!=`, `and` / `&&`, and `or` / `||` respectively. The result will be stored in the variable under `[result]`, and it will be either `yes` or `no`. `first` and `second` can either be a variable or a number, **but not a string**. You know where the example is.
+```
+fingers age 20 !
+more age 21 is_more_21 ?
+shout is_more_21 !!
+```
+
+Output _(note: this is a bug and should output `yes`. We're still working on it.)_:
+```
+False
+```
+
+## Chapter 4 - Clap Twice If You're Happy
+_[work in progress]_
+
 ## Appendix A - Exclamation Questions
 There are different types of endings in Caveman.
 - `!`
@@ -126,4 +155,4 @@ There are different types of endings in Caveman.
 - `!!!`
     - This is used for `scream`. It's basically an emphasize-emphasizer.
 - `?`
-    - This is used for `what`. It's a question mark, so it's used for questions.
+    - This is used for `what` and the Comparison family (notably And Comparison). It's a question mark, so it's used for questions.

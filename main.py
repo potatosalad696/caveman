@@ -31,6 +31,26 @@ def update_var(datatype, name, val: str):
         name: val
     })
 
+def comparisons(mode, first, second, result):
+    val = True
+
+    match mode:
+        case "less":
+            val = first < second
+        case "more":
+            val = first > second
+        case "same":
+            val = first == second
+        case "nosame":
+            val = first != second
+        case "and":
+            val = first and second
+        case "or":
+            val = first or second
+
+    val = "yes" if val == True else "no"
+    update_var("yesno", result, val)
+
 def is_valid_string(val: str):
     return (val[0] == '"') and (val[-1] == '"')
 
@@ -49,7 +69,13 @@ def has_right_ending(com: str, val: str):
         "yesno": " !",
         "what": " ?",
         "give": " !!",
-        "take": " !!"
+        "take": " !!",
+        "less": " ?",
+        "more": " ?",
+        "same": " ?",
+        "nosame": " ?",
+        "and": " ?",
+        "or": " ?"
     }
 
     if val.endswith(endings[com]):
@@ -89,14 +115,18 @@ for line in code:
             else:
                 print(variables[values])
         case "say" | "fingers" | "yesno":
-            name = values.split(" ", 1)[0]
-            value = values.split(" ", 1)[1]
+            tokens = values.split(" ", 1)
+
+            name = tokens[0]
+            value = tokens[1]
 
             update_var(command, name, value)
         case "what":
-            datatype = values.split(" ", 2)[0]
-            name = values.split(" ", 2)[1]
-            to_ask = values.split(" ", 2)[2]
+            tokens = values.split(" ", 2)
+
+            datatype = tokens[0]
+            name = tokens[1]
+            to_ask = tokens[2]
 
             if not is_valid_string(to_ask):
                 raise SyntaxError(f"Invalid text")
@@ -104,12 +134,25 @@ for line in code:
             value = input(to_ask.replace('"', ""))
             update_var(datatype, name, value)
         case "give" | "take":
-            first = values.split(" ", 2)[0]
-            second = values.split(" ", 2)[1]
-            result = values.split(" ", 2)[2]
+            tokens = values.split(" ", 2)
+
+            first = tokens[0]
+            second = tokens[1]
+            result = tokens[2]
 
             first = variables[first] if not str(first).isnumeric() else float(first)
             second = variables[second] if not str(second).isnumeric() else float(second)
 
             output = first + second if command == "give" else first - second
             update_var("fingers", result, str(output))
+        case "less" | "more" | "same" | "nosame" | "and" | "or":
+            tokens = values.split(" ", 2)
+
+            first = tokens[0]
+            second = tokens[1]
+            result = tokens[2]
+
+            first = variables[first] if not str(first).isnumeric() else float(first)
+            second = variables[second] if not str(second).isnumeric() else float(second)
+
+            comparisons(command, first, second, result)
