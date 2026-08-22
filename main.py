@@ -108,8 +108,8 @@ for line in code:
             second = values.split(" ", 2)[1]
             result = values.split(" ", 2)[2]
 
-            first = variables[first]
-            second = variables[second]
+            first = variables[first] if not str(first).isnumeric() else float(first)
+            second = variables[second] if not str(second).isnumeric() else float(second)
 
             output = first + second if command == "give" else first - second
             update_var("fingers", result, str(output))

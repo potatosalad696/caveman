@@ -5,7 +5,7 @@ Caveman is a programming language that ***tries*** to sound as close to a stereo
 
 The sections below are the learning guides for Caveman.
 
-## Chapter 1 - Printing
+## Chapter 1 - Shouting, Screaming, Saying
 There are two functions that can be used to print in Caveman. ```scream``` is used purely for text. If you want to print variables in any way, you have to use ```shout``` (to learn more, read Chapter 2).
 ```
 scream [text] !!!
@@ -24,7 +24,7 @@ Hello World
 
 `shout` can be used in this case, but `scream` is preferred. Double quotation marks (`"`) **must** be used, as the language does not recognize single quotation marks (`'`).
 
-## Chapter 2 - Variables
+## Chapter 2 - Things and Stuff, I Guess
 Variable declaration in Caveman is shown below:
 ```
 [type] [name] [value] !
@@ -92,7 +92,7 @@ Age? 25
 You 25
 ```
 
-### Operations
+## Chapter 3 - Operations by Operators
 `give` and `take` are used to do additions and subtractions respectively in Caveman. The syntax is shown below:
 ```
 give [first] [second] [result] !
