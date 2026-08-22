@@ -1,32 +1,59 @@
 import os
 
-def update_var(datatype, name, val: str):
-    value = val
+## TODO: NEWLINE CHARS
+## ? FOR WHAT
+## ! FOR SHOUT
+## . FOR ELSE
 
+variables = {}
+
+def update_var(datatype, name, val: str):
     match datatype:
         case "words":
-            value = remove_quotes(value)
+            if not is_valid_string(val):
+                raise SyntaxError(f"Invalid text")
+            
+            val = remove_quotes(val)
         case "number":
-            value = int(value)
+            if val.count(".") != 0:
+                val = float(val)
+            else:
+                val = int(val)
         case "yesno":
-            value = True if value == "yes" else False
+            if val == "yes":
+                val = True
+            elif val == "no":
+                val = False
+            else:
+                raise ValueError("Invalid value for yesno")
 
     variables.update({
-        name: value
+        name: val
     })
 
-def remove_quotes(text: str):
-    return text.replace('"', "")
+def is_valid_string(val: str):
+    return (val[0] == '"') and (val[-1] == '"')
 
-def is_valid_string(text: str):
-    return (text[0] == '"') and (text[-1] == '"')
+def remove_quotes(val: str):
+    return val.removeprefix('"').removesuffix('"')
+
+def has_right_ending(com: str, val: str):
+    endings = {
+        "scream": " !!!",
+        "shout": " !!",
+        "words": " !",
+        "number": " !",
+        "yesno": " !"
+    }
+
+    if val.endswith(endings[com]):
+        return [True, endings[com]]
+    else:
+        return [False, endings[com]]
 
 ### stuff ###
 
 os.system("clear")
-
-variables = {}
-
 with open("main.man", "r") as f:
     code = f.read().split("\n")
 
@@ -34,47 +61,37 @@ for line in code:
     if (line == "") or (line.startswith(">> ")):
         continue
 
-    tokens = line.split(" ", 1)
+    command = line.split(" ", 1)[0]
+    values = line.split(" ", 1)[1]
 
-    match tokens[0]:
+    is_valid_ending = has_right_ending(command, values)[0]
+    ending = has_right_ending(command, values)[1]
+
+    if not is_valid_ending:
+        raise SyntaxError(f"Incorrect ending ('{command}' uses '{ending}')")
+    
+    values = values.removesuffix(ending)
+
+    match command:
+        case "scream":
+            if not is_valid_string(values):
+                raise SyntaxError(f"Invalid text")
+            
+            values = remove_quotes(values)
+            print(values)
         case "shout":
-            first = tokens[1].split(" ", 1)[0]
-            second = tokens[1].split(" ", 1)[1]
-
-            mode = first
-            to_print = second
-
-            match mode:
-                case "normal":
-                    if is_valid_string(to_print):
-                        print(to_print.replace('"', ""))
-                    else:
-                        if variables[to_print] == True:
-                            print("yes")
-                        elif variables[to_print] == False:
-                            print("no")
-                        else:
-                            print(variables[to_print])
-                case "special":
-                    if is_valid_string(to_print):
-                        to_print = to_print.replace('"', "").replace("([", "{").replace("])", "}")
-                        print(to_print.format_map(variables)) # yesno breaks
-                    else:
-                        if variables[to_print] == True:
-                            print("yes")
-                        elif variables[to_print] == False:
-                            print("no")
-                        else:
-                            print(variables[to_print])
+            pass
         case "words" | "number" | "yesno":
-            first = tokens[1].split(" ", 1)[0]
-            second = tokens[1].split(" ", 1)[1]
+            name = values.split(" ", 1)[0]
+            value = values.split(" ", 1)[1]
 
-            update_var(tokens[0], first, second)
+            update_var(command, name, value)
         case "what":
-            first = tokens[1].split(" ", 2)[0]
-            second = tokens[1].split(" ", 2)[1]
-            third = tokens[1].split(" ", 2)[2]
+            first = values.split(" ", 2)[0]
+            second = values.split(" ", 2)[1]
+            third = values.split(" ", 2)[2]
 
             temp = input(third.replace('"', ""))
             update_var(first, second, temp)
+
+print(variables)

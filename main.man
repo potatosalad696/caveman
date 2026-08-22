@@ -1,6 +1,6 @@
->> mad libs
-what words animal "Animal: "
-what words place "Place: "
-what words verb "Verb: "
+words want_eat "meat" !
+number animals 100 !
+number mates 1.5 !
+yesno have_meat yes !
 
-shout special "The ([animal]) went to ([place]) and started to ([verb])!"
+scream "Hello World" !!!
