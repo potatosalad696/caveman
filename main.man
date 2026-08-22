@@ -1,2 +1,0 @@
-what number age "Age? " ?
-shout "You [[age]]" !!

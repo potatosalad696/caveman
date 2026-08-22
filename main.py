@@ -1,9 +1,9 @@
-import os
+import sys
 
-## TODO: NEWLINE CHARS
-## ? FOR WHAT
-## ! FOR SHOUT
-## . FOR ELSE
+try:
+    script = sys.argv[1]
+except IndexError:
+    raise ValueError("Missing file (how am I supposed to run nothing?)")
 
 variables = {}
 
@@ -54,11 +54,8 @@ def has_right_ending(com: str, val: str):
         return [True, endings[com]]
     else:
         return [False, endings[com]]
-
-### stuff ###
-
-os.system("clear")
-with open("main.man", "r") as f:
+    
+with open(script, "r") as f:
     code = f.read().split("\n")
 
 for line in code:
