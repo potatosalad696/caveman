@@ -1,1 +1,6 @@
-scream "Hello World" !!!
+fingers old_meat 7 !
+fingers new_meat 14 !
+
+shout old_meat !!
+give old_meat new_meat old_meat !
+shout old_meat !!

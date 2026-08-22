@@ -9,12 +9,12 @@ variables = {}
 
 def update_var(datatype, name, val: str):
     match datatype:
-        case "words":
+        case "say":
             if not is_valid_string(val):
                 raise SyntaxError(f"Invalid text")
             
             val = remove_quotes(val)
-        case "number":
+        case "fingers":
             if val.count(".") != 0:
                 val = float(val)
             else:
@@ -44,10 +44,12 @@ def has_right_ending(com: str, val: str):
     endings = {
         "scream": " !!!",
         "shout": " !!",
-        "words": " !",
-        "number": " !",
+        "say": " !",
+        "fingers": " !",
         "yesno": " !",
-        "what": " ?"
+        "what": " ?",
+        "give": " !",
+        "take": " !"
     }
 
     if val.endswith(endings[com]):
@@ -86,7 +88,7 @@ for line in code:
                 print(values)
             else:
                 print(variables[values])
-        case "words" | "number" | "yesno":
+        case "say" | "fingers" | "yesno":
             name = values.split(" ", 1)[0]
             value = values.split(" ", 1)[1]
 
@@ -101,3 +103,13 @@ for line in code:
 
             value = input(to_ask.replace('"', ""))
             update_var(datatype, name, value)
+        case "give" | "take":
+            first = values.split(" ", 2)[0]
+            second = values.split(" ", 2)[1]
+            result = values.split(" ", 2)[2]
+
+            first = int(variables[first])
+            second = int(variables[second])
+
+            output = first + second if command == "give" else first - second
+            update_var("fingers", result, str(output))

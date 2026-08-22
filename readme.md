@@ -32,23 +32,23 @@ Variable declaration in Caveman is shown below:
 
 Variables should not use a used keyword (for example, `shout`). For example, to declare a variable named `rock` with a value of `7`, write this line below:
 ```
-number rock 7 !
+fingers rock 7 !
 ```
 
 ### Variable Types
 There are different variable types in Caveman, and all of them use unconventional names.
 
-#### words
-`words` is used to store text, and therefore is similar to the `string` datatype used in other languages. An example is shown below:
+#### say
+`say` is used to store text, and therefore is similar to the `string` datatype used in other languages. An example is shown below:
 ```
-words want_eat "meat" !
+say want_eat "meat" !
 ```
 
-#### number
-`number` is used to store numbers, whether they are integers or decimals (since cavemen *probably* don't understand the concept of decimals). Therefore, it is similar to the `int` and `float` datatypes found in Python. An example is shown below:
+#### fingers
+`fingers` is used to store numbers, whether they are integers or decimals (since cavemen *probably* don't understand the concept of decimals). Therefore, it is similar to the `int` and `float` datatypes found in Python. An example is shown below:
 ```
-number animals 100 !
-number days 1.5 !
+fingers animals 100 !
+fingers days 1.5 !
 ```
 
 #### yesno
@@ -60,7 +60,7 @@ yesno have_meat yes !
 ### `shout`
 `shout` is used to print variables, whether they are by themselves or combined with text. To combine variables with text, variables have to be enclosed in `[[]]` (called a double blanket). An example is shown below:
 ```
-words want_eat "meat" !
+say want_eat "meat" !
 
 shout want_eat !!
 shout "me want eat [[want_eat]]" !!
@@ -82,7 +82,7 @@ what [type] [name] [text] ?
 
 `what` will immediately assign the input to a variable with the same name and the same datatype. An example is shown below:
 ```
-what number age "Age? " ?
+what fingers age "Age? " ?
 shout "You [[age]]" !!
 ```
 
@@ -91,3 +91,37 @@ Output:
 Age? 25
 You 25
 ```
+
+### Operations
+`give` and `take` are used to do additions and subtractions respectively in Caveman. The syntax is shown below:
+```
+give [first] [second] [result] !
+take [first] [second] [result] !
+```
+
+`first` and `second` can be variables or numbers, meanwhile result is always a variable. An example is shown below.
+```
+fingers old_meat 7 !
+fingers new_meat 14 !
+
+shout old_meat !!
+give old_meat new_meat old_meat !
+shout old_meat !!
+```
+
+Output:
+```
+7
+21
+```
+
+## Appendix A - Endings
+There are different types of endings in Caveman.
+- `!`
+    - This is the default ending in Caveman. When in doubt, use this.
+- `!!`
+    - This is used for `shout`. Think of it as an emphasizer.
+- `!!!`
+    - This is used for `scream`. It's basically an emphasize-emphasizer.
+- `?`
+    - This is used for `what`. It's a question mark, so it's used for questions.
