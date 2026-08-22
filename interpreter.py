@@ -99,5 +99,8 @@ for line in code:
             name = values.split(" ", 2)[1]
             to_ask = values.split(" ", 2)[2]
 
+            if not is_valid_string(to_ask):
+                raise SyntaxError(f"Invalid text")
+
             value = input(to_ask.replace('"', ""))
             update_var(datatype, name, value)
