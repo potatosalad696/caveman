@@ -200,3 +200,10 @@ There are different types of endings in Caveman.
     - This is used for `what` and the Comparison family (notably And Comparison). It's a question mark, so it's used for questions.
 
 ## Appendix B - What is a "Double Blanket?"
+There are many unique Caveman terminologies that people might not understand. Here are some common ones:
+
+- **double blanket** - `[[]]`, used for `shout`
+- **endings** - see Appendix A
+- **fingers** - integers, floats
+- **says** - strings
+- **things** - variables
