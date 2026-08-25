@@ -169,6 +169,16 @@ done !
 
 Although one can use `same`, the creator decided to be nice for once.
 
+### Functions
+Functions are integral in Caveman. To declare a function and call it, use this syntax:
+```
+start [name] ,
+    [code]
+go !
+
+do [name] !!
+```
+
 ## Appendix A - Exclamation Questions
 There are different types of endings in Caveman.
 - `!`

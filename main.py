@@ -1,15 +1,15 @@
 import sys
 
 try:
-    # script = sys.argv[1]
-    script = "main.cave"
+    script = sys.argv[1]
 except IndexError:
     raise ValueError("Missing file (how am I supposed to run nothing?)")
 
 class Instance:
-    def __init__(self, lines: list[str], variables: dict):
+    def __init__(self, lines: list[str], variables: dict, functions: dict):
         self.lines = lines
         self.variables = variables
+        self.functions = functions
         self.ignore = []
 
     def comparisons(self, mode, first, second, result):
@@ -70,13 +70,12 @@ class Instance:
 
     def run(self):
         for idx, line in enumerate(self.lines):
+            line = line.strip("    ")
+
             if (line == "") or (line.startswith(">> ")):
                 continue
-
             if idx in self.ignore:
                 continue
-
-            line = line.strip("    ")
 
             command = line.split(" ", 1)[0]
             values = line.split(" ", 1)[1]
@@ -153,7 +152,7 @@ class Instance:
                     for i in range(start, end + 1):
                         self.ignore.append(i)
 
-                    new_instance = Instance(new_lines, self.variables)
+                    new_instance = Instance(new_lines, self.variables, self.functions)
                     times = self.variables[values] if not str(values).isnumeric() else int(values)
                     
                     for _ in range(times):
@@ -169,12 +168,28 @@ class Instance:
                     for i in range(start, end + 1):
                         self.ignore.append(i)
 
-                    new_instance = Instance(new_lines, self.variables)
+                    new_instance = Instance(new_lines, self.variables, self.functions)
                     val1 = self.parse_yesno(tokens[0])
                     val2 = self.parse_yesno(tokens[1])
 
                     if val1 == val2:
                         new_instance.run()
+                case "start":
+                    start = idx + 1
+                    future = self.lines[start:]
+                    end = future.index("go !") + start
+
+                    new_lines = self.lines[start:end]
+                    for i in range(start, end + 1):
+                        self.ignore.append(i)
+
+                    self.functions.update({
+                        values: new_lines
+                    })
+                case "do":
+                    new_lines = self.functions[values]
+                    new_instance = Instance(new_lines, self.variables, self.functions)
+                    new_instance.run()
 
 ## TODO: "yes" instead of "True"
 
@@ -206,7 +221,12 @@ def has_right_ending(com: str, val: str):
         "times": " ,",
         "again": "!",
         "when": " ,",
-        "done": "!"
+        "done": "!",
+        "start": " ,",
+        "go": "!",
+        "do": " !!",
+        "bring": " !!", # variables that are taken in by a function
+        "here": " !" # return
     }
 
     if val.endswith(endings[com]):
@@ -217,5 +237,5 @@ def has_right_ending(com: str, val: str):
 with open(script, "r") as f:
     code = f.read().split("\n")
 
-main = Instance(code, {})
+main = Instance(code, {}, {})
 main.run()
