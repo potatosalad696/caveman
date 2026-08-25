@@ -8,6 +8,14 @@ Caveman is a programming language that ***tries*** to sound as close to a stereo
 
 The sections below are the learning guides for Caveman.
 
+## Chapter 0 - How to Stay Alive
+To run a Caveman program, you need to have **Python 3.10 and up**. Install the interpreter, and create your Caveman file in the same folder as the interpreter. The Caveman file should end in `.cave`.
+
+To run the file, run this command:
+```
+(python3 / python) main.py [file].cave
+```
+
 ## Chapter 1 - Shouting, Screaming, Saying
 There are two functions that can be used to print in Caveman. ```scream``` is used purely for text. If you want to print variables in any way, you have to use ```shout``` (to learn more, read Chapter 2).
 ```
