@@ -1,5 +1,6 @@
 # Caveman
-***AI is not used in this project.***
+***AI is not used in this project.***<br>
+Version: 1.0.0 Iteration 1
 
 Caveman is a programming language that ***tries*** to sound as close to a stereotypical caveman as possible. Therefore, it uses **a lot of** unconventional names, and it is simpler than other programming languages.
 
