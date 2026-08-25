@@ -198,6 +198,8 @@ There are different types of endings in Caveman.
     - This is used for `scream`. It's basically an emphasize-emphasizer.
 - `?`
     - This is used for `what` and the Comparison family (notably And Comparison). It's a question mark, so it's used for questions.
+- `,`
+    - This is used for `start`, `when`, and `times`. Used for lines that contain other codes.
 
 ## Appendix B - What is a "Double Blanket?"
 There are many unique Caveman terminologies that people might not understand. Here are some common ones:
