@@ -144,7 +144,15 @@ False
 ```
 
 ## Chapter 4 - Clap Twice If You're Happy
-_[work in progress]_
+Loops, functions, and conditionals are not left out in Caveman.
+
+### Loops
+To loop in Caveman, use this syntax:
+```
+times [times] ,
+    [code]
+again!
+```
 
 ## Appendix A - Exclamation Questions
 There are different types of endings in Caveman.
