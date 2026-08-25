@@ -151,8 +151,23 @@ To loop in Caveman, use this syntax:
 ```
 times [times] ,
     [code]
-again!
+again !
 ```
+Loops **cannot** be nested with other loops, and the same thing is true for conditionals. This is similar to the `for` loop (not including `foreach`).
+
+Although indentation does not matter, it is common etiquette to include one, preferrably 4 spaces per tab.
+
+### Conditionals
+To do conditionals in Caveman, use this syntax below:
+```
+when [val1] [val2] ,
+    [code]
+done !
+```
+
+`val1` and `val2` can either be booleans (`yes` or `no`) or variables. `when` checks if both of the values are the same.
+
+Although one can use `same`, the creator decided to be nice for once.
 
 ## Appendix A - Exclamation Questions
 There are different types of endings in Caveman.
@@ -164,3 +179,5 @@ There are different types of endings in Caveman.
     - This is used for `scream`. It's basically an emphasize-emphasizer.
 - `?`
     - This is used for `what` and the Comparison family (notably And Comparison). It's a question mark, so it's used for questions.
+
+## Appendix B - What is a "Double Blanket?"

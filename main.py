@@ -40,11 +40,15 @@ class Instance:
                 
                 val = remove_quotes(val)
             case "fingers":
+                val = remove_quotes(val)
+                
                 if val.count(".") != 0:
                     val = float(val)
                 else:
                     val = int(val)
             case "yesno":
+                val = remove_quotes(val)
+
                 if val == "yes":
                     val = True
                 elif val == "no":
@@ -56,6 +60,14 @@ class Instance:
             name: val
         })
 
+    def parse_yesno(self, val: str):
+        if val == "yes":
+            return True
+        elif val == "no":
+            return False
+        else:
+            return self.variables[val]
+
     def run(self):
         for idx, line in enumerate(self.lines):
             if (line == "") or (line.startswith(">> ")):
@@ -64,7 +76,6 @@ class Instance:
             if idx in self.ignore:
                 continue
 
-            order = line.count("    ")
             line = line.strip("    ")
 
             command = line.split(" ", 1)[0]
@@ -109,7 +120,7 @@ class Instance:
                         raise SyntaxError(f"Invalid text")
 
                     value = input(to_ask.replace('"', ""))
-                    self.update_var(datatype, name, value)
+                    self.update_var(datatype, name, f'"{value}"')
                 case "give" | "take":
                     tokens = values.split(" ", 2)
 
@@ -136,7 +147,7 @@ class Instance:
                 case "times":
                     start = idx + 1
                     future = self.lines[start:]
-                    end = future.index("    " * order + "again !") + start
+                    end = future.index("again !") + start
 
                     new_lines = self.lines[start:end]
                     for i in range(start, end + 1):
@@ -144,7 +155,25 @@ class Instance:
 
                     new_instance = Instance(new_lines, self.variables)
                     times = self.variables[values] if not str(values).isnumeric() else int(values)
+                    
                     for _ in range(times):
+                        new_instance.run()
+                case "when":
+                    tokens = values.split(" ", 1)
+
+                    start = idx + 1
+                    future = self.lines[start:]
+                    end = future.index("done !") + start
+
+                    new_lines = self.lines[start:end]
+                    for i in range(start, end + 1):
+                        self.ignore.append(i)
+
+                    new_instance = Instance(new_lines, self.variables)
+                    val1 = self.parse_yesno(tokens[0])
+                    val2 = self.parse_yesno(tokens[1])
+
+                    if val1 == val2:
                         new_instance.run()
 
 ## TODO: "yes" instead of "True"
@@ -175,7 +204,9 @@ def has_right_ending(com: str, val: str):
         "and": " ?",
         "or": " ?",
         "times": " ,",
-        "again": "!"
+        "again": "!",
+        "when": " ,",
+        "done": "!"
     }
 
     if val.endswith(endings[com]):

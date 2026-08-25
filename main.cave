@@ -1,0 +1,6 @@
+say want_eat "meat" !
+what say user_want "What do you want to eat? " ?
+
+when user_want want_eat ,
+    scream "Yay!" !!!
+done !
