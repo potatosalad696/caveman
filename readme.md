@@ -35,6 +35,14 @@ Hello World
 
 `shout` can be used in this case, but `scream` is preferred. Double quotation marks (`"`) **must** be used, as the language does not recognize single quotation marks (`'`).
 
+### Comments
+To add comments in Caveman, use this syntax:
+```
+>> [comments]
+```
+
+This will be ignored by the interpreter.
+
 ## Chapter 2 - Things and Stuff, I Guess
 Variable declaration in Caveman is shown below:
 ```
