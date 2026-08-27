@@ -68,6 +68,17 @@ class Instance:
         else:
             return self.variables[val]
 
+    def get_future(self, idx, lines: list[str], stop):
+        start = idx + 1
+        future = lines[start:]
+        end = future.index(stop) + start
+
+        new_lines = lines[start:end]
+        for i in range(start, end + 1):
+            self.ignore.append(i)
+
+        return new_lines
+
     def run(self):
         for idx, line in enumerate(self.lines):
             if line == "":
@@ -150,14 +161,7 @@ class Instance:
 
                     self.comparisons(command, first, second, result)
                 case "times":
-                    start = idx + 1
-                    future = self.lines[start:]
-                    end = future.index("again !") + start
-
-                    new_lines = self.lines[start:end]
-                    for i in range(start, end + 1):
-                        self.ignore.append(i)
-
+                    new_lines = self.get_future(idx, self.lines, "again !")
                     new_instance = Instance(new_lines, self.variables, self.functions)
                     times = self.variables[values] if not str(values).isnumeric() else int(values)
                     
@@ -165,14 +169,7 @@ class Instance:
                         new_instance.run()
                 case "when":
                     tokens = values.split(" ", 1)
-
-                    start = idx + 1
-                    future = self.lines[start:]
-                    end = future.index("done !") + start
-
-                    new_lines = self.lines[start:end]
-                    for i in range(start, end + 1):
-                        self.ignore.append(i)
+                    new_lines = self.get_future(idx, self.lines, "done !")
 
                     new_instance = Instance(new_lines, self.variables, self.functions)
                     val1 = self.parse_yesno(tokens[0])
@@ -181,14 +178,7 @@ class Instance:
                     if val1 == val2:
                         new_instance.run()
                 case "start":
-                    start = idx + 1
-                    future = self.lines[start:]
-                    end = future.index("go !") + start
-
-                    new_lines = self.lines[start:end]
-                    for i in range(start, end + 1):
-                        self.ignore.append(i)
-
+                    new_lines = self.get_future(idx, self.lines, "go !")
                     self.functions.update({
                         values: new_lines
                     })
