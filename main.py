@@ -94,11 +94,19 @@ class Instance:
                     values = remove_quotes(values)
                     print(values)
                 case "shout":
+                    formats = self.variables.copy()
+
+                    for format in formats.keys():
+                        if formats[format] == True:
+                            formats[format] = "yes"
+                        elif formats[format] == False:
+                            formats[format] = "no"
+
                     if is_valid_string(values):
-                        values = remove_quotes(double_blanket(values)).format_map(self.variables)
+                        values = remove_quotes(double_blanket(values)).format_map(formats)
                         print(values)
                     else:
-                        print(self.variables[values])
+                        print(formats[values])
                 case "say" | "fingers" | "yesno":
                     tokens = values.split(" ", 1)
 
@@ -190,8 +198,6 @@ class Instance:
                     new_instance.run()
                 case "uhh":
                     continue
-
-## TODO: "yes" instead of "True"
 
 def is_valid_string(val: str):
     return (val[0] == '"') and (val[-1] == '"')
