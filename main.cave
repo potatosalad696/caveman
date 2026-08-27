@@ -1,13 +1,14 @@
-start scream_yay ,
-    give 9 10 idk !!
+fingers number 0 !
 
-    scream "Yay!" !!!
-    shout idk !!
+start count ,
+    shout number !!
+    give number 1 number !!
+    
+    less number 201 should_stop ?
+
+    when should_stop yes ,
+        do count !!
+    done !
 go !
 
-say want_eat "meat" !
-what say user_want "What do you want to eat? " ?
-
-when user_want want_eat ,
-    do scream_yay !!
-done !
+do count !!

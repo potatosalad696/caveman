@@ -1,13 +1,14 @@
 import sys
 
 try:
-    script = sys.argv[1]
+    # script = sys.argv[1]
+    script = "main.cave"
 except IndexError:
     raise ValueError("Missing file (how am I supposed to run nothing?)")
 
 class Instance:
     def __init__(self, lines: list[str], variables: dict, functions: dict):
-        self.lines = lines
+        self.lines = [_line.strip("    ") for _line in lines]
         self.variables = variables
         self.functions = functions
         self.ignore = []
@@ -70,8 +71,6 @@ class Instance:
 
     def run(self):
         for idx, line in enumerate(self.lines):
-            line = line.strip("    ")
-
             if (line == "") or (line.startswith(">> ")):
                 continue
             if idx in self.ignore:
