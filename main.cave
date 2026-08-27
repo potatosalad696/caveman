@@ -1,13 +1,2 @@
-start scream_yay ,
-    give 9 10 idk !!
-
-    scream "Yay!" !!!
-    shout idk !!
-go !
-
-say want_eat "meat" !
-what say user_want "What do you want to eat? " ?
-
-when user_want want_eat ,
-    do scream_yay !!
-done !
+>> write your code here
+scream "Hello World" !!!
