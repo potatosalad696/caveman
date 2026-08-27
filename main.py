@@ -70,7 +70,7 @@ class Instance:
 
     def run(self):
         for idx, line in enumerate(self.lines):
-            if (line == "") or (line.startswith(">> ")):
+            if line == "":
                 continue
             if idx in self.ignore:
                 continue
@@ -188,6 +188,8 @@ class Instance:
                     new_lines = self.functions[values]
                     new_instance = Instance(new_lines, self.variables, self.functions)
                     new_instance.run()
+                case "uhh":
+                    continue
 
 ## TODO: "yes" instead of "True"
 
@@ -223,6 +225,7 @@ def has_right_ending(com: str, val: str):
         "start": " ,",
         "go": "!",
         "do": " !!",
+        "uhh": " .",
         "bring": " !!", # variables that are taken in by a function
         "here": " !" # return
     }

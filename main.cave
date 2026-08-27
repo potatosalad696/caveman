@@ -6,6 +6,7 @@ start count ,
     
     less number 201 should_stop ?
 
+    uhh This should be a comment and be ignored by the thingy .
     when should_stop yes ,
         do count !!
     done !
