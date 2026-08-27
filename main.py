@@ -1,8 +1,7 @@
 import sys
 
 try:
-    # script = sys.argv[1]
-    script = "main.cave"
+    script = sys.argv[1]
 except IndexError:
     raise ValueError("Missing file (how am I supposed to run nothing?)")
 
