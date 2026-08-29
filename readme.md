@@ -38,7 +38,7 @@ Hello World
 ### Comments
 To add comments in Caveman, use this syntax:
 ```
->> [comments]
+uhh [comments] .
 ```
 
 This will be ignored by the interpreter.
@@ -155,9 +155,9 @@ more age 21 is_more_21 ?
 shout is_more_21 !!
 ```
 
-Output _(note: this is a bug and should output `no`. We're still working on it.)_:
+Output:
 ```
-False
+no
 ```
 
 ## Chapter 4 - Clap Twice If You're Happy
@@ -208,6 +208,8 @@ There are different types of endings in Caveman.
     - This is used for `what` and the Comparison family (notably And Comparison). It's a question mark, so it's used for questions.
 - `,`
     - This is used for `start`, `when`, and `times`. Used for lines that contain other codes.
+- `.`
+    - This is used for `uhh`. Statements.
 
 ## Appendix B - What is a "Double Blanket?"
 There are many unique Caveman terminologies that people might not understand. Here are some common ones:
