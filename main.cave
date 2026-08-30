@@ -1,2 +1,4 @@
-yesno hello yes !
 bag my-bag 5 !
+
+inside my-bag make last "hello" !!
+shout my-bag !!

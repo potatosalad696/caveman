@@ -32,6 +32,8 @@ class Instance:
         val = "yes" if val == True else "no"
         self.update_var("yesno", result, val)
 
+    # TODO: support variables for val
+    # TODO: better validation for val (same for inside)
     def update_var(self, datatype, name, val: str):
         match datatype:
             case "say":
@@ -80,6 +82,41 @@ class Instance:
             self.ignore.append(i)
 
         return new_lines
+
+    # TODO: strings not working (remove quotes)
+    # TODO: support variables for idx and new_val
+    def inside(self, bag: list, command, others: str):
+        match command:
+            case "get":
+                idx = -1 if others.split(" ", 1)[0] == "last" else int(others.split(" ", 1)[0])
+                var = others.split(" ", 1)[1]
+
+                self.variables.update({
+                    var: bag[idx]
+                })
+            case "put":
+                if others == "last":
+                    bag.append(0)
+                else:
+                    idx = int(others)
+                    bag.insert(idx)
+            case "throw":
+                if others == "last":
+                    bag.pop()
+                else:
+                    idx = int(others)
+                    bag.pop(idx)
+            case "many":
+                self.variables.update({
+                    others: len(bag)
+                })
+            case "make":
+                args = others.split(" ", 2)
+
+                idx = -1 if args[0] == "last" else int(args[0])
+                new_val = args[1]
+
+                bag[idx] = new_val
 
     def run(self):
         for idx, line in enumerate(self.lines):
@@ -190,6 +227,14 @@ class Instance:
                     new_instance.run()
                 case "uhh":
                     continue
+                case "inside":
+                    vals = values.split(" ", 2)
+
+                    var_name = self.variables[vals[0]]
+                    com = vals[1]
+                    others = vals[2]
+
+                    self.inside(var_name, com, others)
 
 def is_valid_string(val: str):
     return (val[0] == '"') and (val[-1] == '"')
@@ -225,6 +270,7 @@ def has_right_ending(com: str, val: str):
         "do": " !!",
         "uhh": " .",
         "bag": " !",
+        "inside": " !!",
         "bring": " !!", # variables that are taken in by a function
         "here": " !" # return
     }
