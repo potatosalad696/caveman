@@ -1,4 +1,9 @@
 bag my-bag 5 !
 
 inside my-bag make last "hello" !!
+inside my-bag make 1 10 !!
+inside my-bag put last !!
+inside my-bag many how-many !!
+
 shout my-bag !!
+shout how-many !!

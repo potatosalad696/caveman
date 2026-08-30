@@ -88,7 +88,7 @@ class Instance:
     def inside(self, bag: list, command, others: str):
         match command:
             case "get":
-                idx = -1 if others.split(" ", 1)[0] == "last" else int(others.split(" ", 1)[0])
+                idx = -1 if others.split(" ", 1)[0] == "last" else int(others.split(" ", 1)[0]) - 1
                 var = others.split(" ", 1)[1]
 
                 self.variables.update({
@@ -98,13 +98,13 @@ class Instance:
                 if others == "last":
                     bag.append(0)
                 else:
-                    idx = int(others)
+                    idx = int(others) - 1
                     bag.insert(idx)
             case "throw":
                 if others == "last":
                     bag.pop()
                 else:
-                    idx = int(others)
+                    idx = int(others) - 1
                     bag.pop(idx)
             case "many":
                 self.variables.update({
@@ -113,7 +113,7 @@ class Instance:
             case "make":
                 args = others.split(" ", 2)
 
-                idx = -1 if args[0] == "last" else int(args[0])
+                idx = -1 if args[0] == "last" else int(args[0]) - 1
                 new_val = args[1]
 
                 bag[idx] = new_val
