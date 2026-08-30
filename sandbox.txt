@@ -1,0 +1,9 @@
+bag [name] [length] ! >> default: fingers
+inside [name] get [idx] !!
+inside [name] make [idx] [val_type] [new_val] !!
+inside [name] put [idx] !!
+inside [name] throw [idx] !!
+inside [name] many [var] ?
+
+idx can be `last`
+idx starts at 1
