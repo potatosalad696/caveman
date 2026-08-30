@@ -1,5 +1,5 @@
 bag [name] [length] ! >> default: fingers
-inside [name] get [idx] !!
+inside [name] get [idx] [var] !!
 inside [name] make [idx] [val_type] [new_val] !!
 inside [name] put [idx] !!
 inside [name] throw [idx] !!

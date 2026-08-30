@@ -55,6 +55,8 @@ class Instance:
                     val = False
                 else:
                     raise ValueError("Invalid value for yesno")
+            case "bag":
+                val = [0 for _ in range(int(val))]
 
         self.variables.update({
             name: val
@@ -118,7 +120,7 @@ class Instance:
                         print(values)
                     else:
                         print(formats[values])
-                case "say" | "fingers" | "yesno":
+                case "say" | "fingers" | "yesno" | "bag":
                     tokens = values.split(" ", 1)
 
                     name = tokens[0]
@@ -222,6 +224,7 @@ def has_right_ending(com: str, val: str):
         "go": "!",
         "do": " !!",
         "uhh": " .",
+        "bag": " !",
         "bring": " !!", # variables that are taken in by a function
         "here": " !" # return
     }
@@ -236,3 +239,5 @@ with open(script, "r") as f:
 
 main = Instance(code, {}, {})
 main.run()
+
+# print(main.variables)
